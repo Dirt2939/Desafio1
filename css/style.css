@@ -129,3 +129,21 @@ input {
   font-size: 1rem;
   cursor: pointer;
 }
+
+.entrada-dropdown {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 200px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.entrada-dropdown:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}

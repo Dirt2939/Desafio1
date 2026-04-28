@@ -1,4 +1,4 @@
-import { getInput, setText, isInputValid } from "./Utils.js";
+import { getInput, setText, isInputValid, timer } from "./Utils.js";
 
 const funcoes = {
   escrever,
@@ -15,6 +15,14 @@ const funcoes = {
   calcularIMC,
   calcularDesconto,
   compararNumeros,
+  classificarTriangulo,
+  escolherBebida,
+  verificarVogalConsoante,
+  calcularCalculadora,
+  converterMoedaPro,
+  contarAte50,
+  gerarTabuada,
+  somarCincoNumeros,
 };
 
 document.addEventListener("click", (event) => {
@@ -110,9 +118,10 @@ function mostrarVizinhos() {
 
 function verificarParImpar() {
   let parImpar = getInput("parImpar", "num");
-  parImpar = parImpar % 2 === 0 ? "par" : "impar";
 
   if (!isInputValid([parImpar])) return;
+
+  parImpar = parImpar % 2 === 0 ? "par" : "impar";
 
   setText("res8", `O número é ${parImpar}`);
 }
@@ -194,4 +203,126 @@ function toggleVisibilidade(btnToggle) {
     interacoes.classList.add("hidden");
     btnToggle.textContent = "+";
   }
+}
+
+function classificarTriangulo() {
+  let lado1 = getInput("lado1", "num");
+  let lado2 = getInput("lado2", "num");
+  let lado3 = getInput("lado3", "num");
+
+  if (!isInputValid([lado1, lado2, lado3])) return;
+
+  // COLOCAR VERIFICAÇÃO DE TRIANGULO: 1° LADO MAIOR Q A SOMA DOS OUTROS 2
+
+  let resultado =
+    lado1 == lado2 && lado2 == lado3
+      ? "equilátero"
+      : lado1 == lado2 || lado1 == lado3 || lado2 == lado3
+        ? "isóceles"
+        : "escaleno";
+
+  setText("res16", `O triângulo é ${resultado}`);
+}
+
+function escolherBebida() {
+  let escolha = getInput("menuBebidas");
+
+  setText("res17", `Você escolheu: ${escolha}`);
+}
+
+function verificarVogalConsoante() {
+  let letra = getInput("letraInformada");
+  let resultado = "consoante";
+
+  if (/[aeiou]/.test(letra)) resultado = "vogal";
+
+  setText("res18", `A letra é uma ${resultado}`);
+}
+
+function calcularCalculadora() {
+  let num1 = getInput("calcN1", "num");
+  let num2 = getInput("calcN2", "num");
+  let operador = getInput("selecionarOperacao");
+  if (!isInputValid([num1, num2])) return;
+
+  let resultado = 0;
+  switch (operador) {
+    case "+":
+      resultado = num1 + num2;
+      break;
+    case "-":
+      resultado = num1 - num2;
+      break;
+    case "*":
+      resultado = num1 * num2;
+      break;
+    case "/":
+      resultado = num1 != 0 ? num1 / num2 : 0;
+  }
+
+  setText("res19", `O resultado da operação é ${resultado}`);
+}
+
+function converterMoedaPro() {
+  let valor = getInput("valorReal", "num");
+  let moedaConverter = getInput("moedaDestino");
+
+  if (!isInputValid([valor])) return;
+
+  const taxas = {
+    Dólar: 4.99,
+    Euro: 5.85,
+    "Peso Argentino": 0.0036,
+  };
+
+  let resultado = valor / taxas[moedaConverter];
+
+  setText("res20", `O preço agora é ${resultado.toFixed(2)} ${moedaConverter}`);
+}
+
+async function contarAte50() {
+  for (let i = 0; i <= 50; i++) {
+    setText("res21", i);
+    await timer(100);
+  }
+}
+
+async function gerarTabuada() {
+  let num = getInput("numTabuada", "num");
+
+  if (!isInputValid([num])) return;
+
+  let tabelaHTML = `
+  <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th style="padding: 10px; border: 1px solid #ddd; color: black;">Cálculo</th>
+          <th style="padding: 10px; border: 1px solid #ddd; color: black;">Resultado</th>
+        </tr>
+      </thead>
+      <tbody id="corpoTabuada"></tbody>
+    </table>
+  `;
+
+  document.getElementById("res22").innerHTML = tabelaHTML;
+  let corpo = document.getElementById("corpoTabuada");
+
+  for (let i = 0; i <= 10; i++) {
+    let linha = `
+      <tr style="text-align: center;">
+        <td style="padding: 8px; border: 1px solid #ddd;">${num} x ${i} = </td>
+        <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #27ae60;">
+          ${num * i}
+        </td>
+      </tr>
+    `;
+
+    corpo.innerHTML += linha;
+    await timer(150);
+  }
+}
+
+function somarCincoNumeros() {
+  let valores = getInput("numsSoma", "vet");
+  console.log(valores);
 }
