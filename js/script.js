@@ -1,5 +1,22 @@
 import { getInput, setText, isInputValid } from "./Utils.js";
 
+const funcoes = {
+  escrever,
+  perguntar,
+  mostrarTexto,
+  somar,
+  calcularMedia,
+  converterDolar,
+  calcularTerreno,
+  verificarParImpar,
+  mostrarVizinhos,
+  verificarVelocidade,
+  verificarHabilitacao,
+  calcularIMC,
+  calcularDesconto,
+  compararNumeros,
+};
+
 document.addEventListener("click", (event) => {
   const elemento = event.target;
   const acao = elemento.dataset.action;
@@ -10,33 +27,24 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  const funcoes = {
-    escrever,
-    perguntar,
-    mostrarTexto,
-    somar,
-    calcularMedia,
-    converterDolar,
-    calcularTerreno,
-    verificarParImpar,
-    mostrarVizinhos,
-    verificarVelocidade,
-    verificarHabilitacao,
-    calcularIMC,
-    calcularDesconto,
-    compararNumeros,
-  };
-
   if (acao && funcoes[acao]) {
     funcoes[acao]();
   }
 });
 
 function escrever() {
-  document.write("<b>Olá São Lucas!</b>");
   document.write(
-    "<br><a style='text-decoration:none' href='index.html'>Voltar</a></br>",
+    "<div style='display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: Arial, sans-serif;'>",
   );
+
+  document.write(
+    "<b style='font-size: 48px; margin-bottom: 20px;'>Olá São Lucas!</b>",
+  );
+  document.write(
+    "<a href='index.html' style='text-decoration: none; font-size: 14px; color: gray;'>Voltar</a>",
+  );
+
+  document.write("</div>");
 }
 
 function perguntar() {
