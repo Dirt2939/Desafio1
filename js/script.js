@@ -1,4 +1,4 @@
-import { getInput, setText, isInputValid, timer } from "./Utils.js";
+import { getInput, setText, isNumInputValid, timer } from "./Utils.js";
 
 const funcoes = {
   escrever,
@@ -23,6 +23,10 @@ const funcoes = {
   contarAte50,
   gerarTabuada,
   somarCincoNumeros,
+  listarPares,
+  calcularFatorial,
+  validarNota,
+  calcularMediaIdades,
 };
 
 document.addEventListener("click", (event) => {
@@ -71,7 +75,7 @@ function somar() {
   let num1 = getInput("num1", "num");
   let num2 = getInput("num2", "num");
 
-  if (!isInputValid([num1, num2])) return;
+  if (!isNumInputValid([num1, num2])) return;
 
   let total = num1 + num2;
   setText("res3", `O resultado entre ${num1} + ${num2} é igual a ${total}`);
@@ -82,7 +86,7 @@ function calcularMedia() {
   let num2 = getInput("num2Es", "num");
   let num3 = getInput("num3Es", "num");
 
-  if (!isInputValid([num1, num2, num3])) return;
+  if (!isNumInputValid([num1, num2, num3])) return;
 
   let total = (num1 + num2 + num3) / 3;
   setText("res4", `A média é ${total.toFixed(2)}`);
@@ -92,7 +96,7 @@ function converterDolar() {
   let valor = getInput("valor", "num");
   let cotacao = getInput("cotacao", "num");
 
-  if (!isInputValid([cotacao, valor])) return;
+  if (!isNumInputValid([cotacao, valor])) return;
 
   let total = valor / cotacao;
   setText("res5", `R$${valor.toFixed(2)} em dólar é $${total.toFixed(2)}`);
@@ -102,7 +106,7 @@ function calcularTerreno() {
   let largura = getInput("largura", "num");
   let altura = getInput("altura", "num");
 
-  if (!isInputValid([altura, largura])) return;
+  if (!isNumInputValid([altura, largura])) return;
 
   let total = altura * largura;
   setText("res6", `A área do terreno é: ${total.toFixed(2)}m`);
@@ -111,7 +115,7 @@ function calcularTerreno() {
 function mostrarVizinhos() {
   let num = getInput("numAS", "num");
 
-  if (!isInputValid([num])) return;
+  if (!isNumInputValid([num])) return;
 
   setText("res7", `Vizinhos: ${num - 1} ${num} ${num + 1}`);
 }
@@ -119,7 +123,7 @@ function mostrarVizinhos() {
 function verificarParImpar() {
   let parImpar = getInput("parImpar", "num");
 
-  if (!isInputValid([parImpar])) return;
+  if (!isNumInputValid([parImpar])) return;
 
   parImpar = parImpar % 2 === 0 ? "par" : "impar";
 
@@ -129,7 +133,7 @@ function verificarParImpar() {
 function verificarVelocidade() {
   let velocidade = getInput("velocidade", "num");
 
-  if (!isInputValid([velocidade])) return;
+  if (!isNumInputValid([velocidade])) return;
 
   let msg =
     velocidade >= 120
@@ -144,7 +148,7 @@ function verificarHabilitacao() {
   let anoNascimento = getInput("anoNascimento", "num");
   let anoAtual = getInput("anoAtual", "num");
 
-  if (!isInputValid([anoNascimento, anoAtual])) return;
+  if (!isNumInputValid([anoNascimento, anoAtual])) return;
 
   let msg =
     anoAtual - anoNascimento >= 18
@@ -157,7 +161,7 @@ function calcularIMC() {
   let peso = getInput("pesoIMC", "num");
   let altura = getInput("alturaIMC", "num");
 
-  if (!isInputValid([peso, altura])) return;
+  if (!isNumInputValid([peso, altura])) return;
 
   let imc = peso / Math.pow(altura, 2);
   let msg =
@@ -170,7 +174,7 @@ function calcularIMC() {
 function calcularDesconto() {
   let valorCompra = getInput("valorCompra", "num");
 
-  if (!isInputValid([valorCompra])) return;
+  if (!isNumInputValid([valorCompra])) return;
 
   let desconto = valorCompra > 500 ? 15 : 5;
   let total = valorCompra - (valorCompra * desconto) / 100;
@@ -182,7 +186,7 @@ function compararNumeros() {
   let numA = getInput("numA", "num");
   let numB = getInput("numB", "num");
 
-  if (!isInputValid([numA, numB])) return;
+  if (!isNumInputValid([numA, numB])) return;
 
   let msg =
     numA > numB
@@ -210,7 +214,7 @@ function classificarTriangulo() {
   let lado2 = getInput("lado2", "num");
   let lado3 = getInput("lado3", "num");
 
-  if (!isInputValid([lado1, lado2, lado3])) return;
+  if (!isNumInputValid([lado1, lado2, lado3])) return;
 
   // COLOCAR VERIFICAÇÃO DE TRIANGULO: 1° LADO MAIOR Q A SOMA DOS OUTROS 2
 
@@ -243,7 +247,7 @@ function calcularCalculadora() {
   let num1 = getInput("calcN1", "num");
   let num2 = getInput("calcN2", "num");
   let operador = getInput("selecionarOperacao");
-  if (!isInputValid([num1, num2])) return;
+  if (!isNumInputValid([num1, num2])) return;
 
   let resultado = 0;
   switch (operador) {
@@ -267,7 +271,7 @@ function converterMoedaPro() {
   let valor = getInput("valorReal", "num");
   let moedaConverter = getInput("moedaDestino");
 
-  if (!isInputValid([valor])) return;
+  if (!isNumInputValid([valor])) return;
 
   const taxas = {
     Dólar: 4.99,
@@ -290,7 +294,7 @@ async function contarAte50() {
 async function gerarTabuada() {
   let num = getInput("numTabuada", "num");
 
-  if (!isInputValid([num])) return;
+  if (!isNumInputValid([num])) return;
 
   let tabelaHTML = `
   <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
@@ -323,6 +327,59 @@ async function gerarTabuada() {
 }
 
 function somarCincoNumeros() {
-  let valores = getInput("numsSoma", "vet");
-  console.log(valores);
+  let numeros = getInput("numsSoma", "vet");
+
+  if (!isNumInputValid(numeros)) return;
+
+  let total = 0;
+
+  for (let n of numeros) {
+    total += n;
+  }
+
+  setText("res23", `A soma dos números é ${total}`);
+}
+
+async function listarPares() {
+  for (let i = 0; i <= 100; i++) {
+    if (i % 2 === 0) {
+      setText("res24", i);
+      await timer(150);
+    }
+  }
+}
+
+function calcularFatorial() {
+  let num = getInput("numFatorial", "num");
+
+  if (!isNumInputValid([num]) || num <= 0) return;
+
+  for (let i = num - 1; i > 0; i--) {
+    num *= i;
+  }
+
+  setText("res25", `O fatorial é ${num}`);
+}
+
+function validarNota() {
+  let nota = getInput("nota", "num");
+
+  if (!isNumInputValid([nota]) || nota < 0 || nota > 10)
+    return alert("Digite uma nota válida entre 0 e 10");
+
+  setText("res26", `A nota ${nota} é válida!`);
+}
+
+function calcularMediaIdades() {
+  let idades = getInput("idades", "vet");
+
+  if (!isNumInputValid(idades) || idades.some((idade) => idade < 0))
+    return alert("Digite idades válidas (números positivos)");
+
+  let total = 0;
+  for (let idade of idades) {
+    total += idade;
+  }
+  let media = total / idades.length;
+  setText("res27", `A média das idades é ${media.toFixed(2)}`);
 }

@@ -383,25 +383,31 @@
 
       <section class="bloco">
         <div class="info">
-          <h2 class="titulo">23. Somador de Números <span>- Soma de 5 valores</span></h2>
+          <h2 class="titulo">
+            23. Somador de Números <span>- Soma de 5 valores</span>
+          </h2>
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
           <p>Clique no botão para digitar os 5 números:</p>
-          <input type="text" id="numsSoma" placeholder="Ex: 1,65,3,32,8" />
-          <button class="btn" data-action="somarCincoNumeros">Iniciar Soma</button>
+          <input type="text" id="numsSoma" placeholder="Digite os números separados por vírgula" />
+          <button class="btn" data-action="somarCincoNumeros">
+            Iniciar Soma
+          </button>
           <div id="res23" class="resultado"></div>
         </div>
       </section>
 
       <section class="bloco">
         <div class="info">
-          <h2 class="titulo">24. Apenas os Pares <span>- Números de 1 a 100</span></h2>
+          <h2 class="titulo">
+            24. Apenas os Pares <span>- Números de 1 a 100</span>
+          </h2>
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
           <button class="btn" data-action="listarPares">Mostrar Pares</button>
-          <div id="res24" class="resultado" style="word-wrap: break-word; max-height: 150px; overflow-y: auto;"></div>
+          <div id="res24" class="resultado"></div>
         </div>
       </section>
 
@@ -414,6 +420,64 @@
           <input type="number" id="numFatorial" placeholder="Número" />
           <button class="btn" data-action="calcularFatorial">Calcular !</button>
           <div id="res25" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            26. Validação de Dados <span>- Loop de 0-10</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <input type="number" id="nota" placeholder="Nota (0-10)" />
+          <button class="btn" data-action="validarNota">Validar Nota</button>
+          <div id="res26" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            27. Média de Idades <span>- Para ao digitar 0</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <input type="text" id="idades" placeholder="Digite as idades separadas por vírgula" />
+          <button class="btn" data-action="calcularMediaIdades">
+            Iniciar Coleta
+          </button>
+          <div id="res27" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            28. Lista de Nomes <span>- Percorrendo Array</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <button class="btn" data-action="listarAlunos">Ver Lista</button>
+          <div id="res28" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            29. Maior Valor <span>- Descobrir maior de 10 números</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <button class="btn" data-action="encontrarMaior">
+            Digitar 10 Números
+          </button>
+          <div id="res29" class="resultado"></div>
         </div>
       </section>
 
