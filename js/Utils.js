@@ -1,11 +1,13 @@
 export const getInput = (id, tipo) => {
   const conteudo = document.getElementById(id).value;
-  if (tipo === "num") return parseFloat(conteudo); 
+
+  if (tipo === "num") return parseFloat(conteudo);
   else if (tipo === "vet") {
-    return retornarVetor(conteudo); ;;}
+    return retornarVetor(conteudo);
+  }
 
   function retornarVetor(nums) {
-    return nums.split(",").map((n) => parseFloat(n.trim())); 
+    return nums.split(",").map((n) => parseFloat(n.trim()));
   }
 
   return conteudo; // Retorna String

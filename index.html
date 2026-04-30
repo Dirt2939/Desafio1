@@ -390,7 +390,7 @@
         </div>
         <div class="interacoes hidden">
           <p>Clique no botão para digitar os 5 números:</p>
-          <input type="text" id="numsSoma" placeholder="Digite os números separados por vírgula" />
+          <input type="text" id="numsSoma" placeholder="Ex: 14,44,33,16" />
           <button class="btn" data-action="somarCincoNumeros">
             Iniciar Soma
           </button>
@@ -445,7 +445,7 @@
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
-          <input type="text" id="idades" placeholder="Digite as idades separadas por vírgula" />
+          <input type="text" id="idades" placeholder="Ex: 14,44,33,16" />
           <button class="btn" data-action="calcularMediaIdades">
             Iniciar Coleta
           </button>
@@ -474,6 +474,7 @@
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
+          <input type="text" id="dezNumeros" placeholder="Ex: 14,44,33,16" />
           <button class="btn" data-action="encontrarMaior">
             Digitar 10 Números
           </button>
@@ -487,14 +488,48 @@
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
-          <p>Digite 5 números separados por vírgula:</p>
+          <p>Digite 5 números</p>
           <input
             type="text"
-            id="arrayNumeros"
+            id="cincoNumeros"
             placeholder="Ex: 10,20,30,40,50"
           />
           <button class="btn" data-action="inverterArray">Inverter</button>
           <div id="res30" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            31. Localizador de Nomes <span>- Verificar presença no Array</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <input
+            type="text"
+            id="nomeBusca"
+            placeholder="Digite um nome para buscar"
+          />
+          <button class="btn" data-action="buscarNome">Buscar</button>
+          <div id="res31" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
+          <h2 class="titulo">
+            32. Filtro de Notas <span>- Notas acima de 7.0</span>
+          </h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <input type="text" id="dezNotas" placeholder="Ex: 14,44,33,16">
+          <button class="btn" data-action="filtrarNotas">
+            Analisar 10 Notas
+          </button>
+          <div id="res32" class="resultado"></div>
         </div>
       </section>
 
@@ -514,16 +549,27 @@
 
       <section class="bloco">
         <div class="info">
+          <h2 class="titulo">34. Média de Vendas Mensais <span>- Relatório Anual</span></h2>
+          <button class="btnToggle">+</button>
+        </div>
+        <div class="interacoes hidden">
+          <p>Clique abaixo para calcular o total e a média das vendas dos 12 meses:</p>
+          <button class="btn" data-action="calcularVendasAnuais">Calcular Vendas</button>
+          <div id="res34" class="resultado"></div>
+        </div>
+      </section>
+
+      <section class="bloco">
+        <div class="info">
           <h2 class="titulo">
             35. Carrinho de Compras <span>- Nota Fiscal</span>
           </h2>
           <button class="btnToggle">+</button>
         </div>
         <div class="interacoes hidden">
-          <button class="btn" data-action="gerarCarrinho">
-            Iniciar Cadastro de 3 Itens
-          </button>
+          <button class="btn" data-action="addInputs">+</button>
           <div id="res35" class="resultado"></div>
+          
         </div>
       </section>
     </main>

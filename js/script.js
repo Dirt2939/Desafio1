@@ -27,7 +27,17 @@ const funcoes = {
   calcularFatorial,
   validarNota,
   calcularMediaIdades,
+  listarAlunos,
+  encontrarMaior,
+  inverterArray,
+  buscarNome,
+  filtrarNotas,
+  calcularVendasAnuais,
+  gerarCarrinho,
+  addInputs,
 };
+
+const addInputsController = addInputs();
 
 document.addEventListener("click", (event) => {
   const elemento = event.target;
@@ -36,6 +46,19 @@ document.addEventListener("click", (event) => {
 
   if (btnToggle) {
     toggleVisibilidade(btnToggle);
+    return;
+  }
+
+  let contador = 0;
+  if (acao == "addInputs") { // CONSERTAR "ISSO"
+    console.log("aqui")
+    contador = addInputsController.next().value;
+    if (contador == 1) contador = addInputsController.next().value;
+    else if (contador == 2) contador = addInputsController.next().value;
+    else if (contador == 3) {
+      contador = 1;
+      gerarCarrinho();
+    }
     return;
   }
 
@@ -382,4 +405,135 @@ function calcularMediaIdades() {
   }
   let media = total / idades.length;
   setText("res27", `A média das idades é ${media.toFixed(2)}`);
+}
+
+async function listarAlunos() {
+  let nomeAlunos = ["Jorge", "Xiru", "Pedro", "Xirua", "David"];
+
+  for (let a of nomeAlunos) {
+    setText("res28", a);
+    await timer(500);
+  }
+}
+
+function encontrarMaior() {
+  let dezNumeros = getInput("dezNumeros", "vet");
+
+  if (!isNumInputValid(dezNumeros)) return;
+
+  let maior = 0;
+
+  for (let n of dezNumeros) {
+    if (n > maior) {
+      maior = n;
+    }
+  }
+
+  setText("res29", `O maior número é: ${maior}`);
+}
+
+function inverterArray() {
+  let cincoNumeros = getInput("cincoNumeros", "vet");
+
+  if (!isNumInputValid(cincoNumeros)) return;
+
+  let invertido = [];
+
+  for (let i = cincoNumeros.length; i != 0; i--) {
+    invertido.push(i);
+  }
+
+  setText("res30", invertido);
+}
+
+function buscarNome() {
+  let nomeBusca = getInput("nomeBusca").toUpperCase();
+  let nomes = ["JORGE", "ANTONIO", "PEDRO", "XIRU", "XIRUA"];
+
+  if (searchByName(nomes, nomeBusca)) setText("res31", "Encontrado!");
+  else setText("res31", "Não encontrado!");
+}
+
+function searchByName(nomes, nomeBusca) {
+  for (let n of nomes) {
+    if (nomeBusca === n) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function filtrarNotas() {
+  let dezNotas = getInput("dezNotas", "vet");
+
+  if (!isNumInputValid(dezNotas)) return;
+
+  let qtdMais7 = 0;
+  let notasMais7 = [];
+  let flag = false;
+
+  for (let n of dezNotas) {
+    if (n > 7) {
+      qtdMais7++;
+      notasMais7.push(n);
+      flag = true;
+    }
+  }
+
+  if (!flag) {
+    setText("res32", `Não há notas maiores que 7`);
+    return;
+  }
+
+  setText("res32", `Temos ${qtdMais7} eles são: ${notasMais7}`);
+}
+
+function verificarLogin() {
+  let loginUsuario = getInput("loginUsuario");
+  let usersPermitidos = ["Xiru", "Xirua", "Juninho", "Alfedro", "Abel"];
+
+  if (searchByName(usersPermitidos, loginUsuario))
+    setText("res33", "Acesso liberado!");
+  else setText("res33", "Acesso negado!");
+}
+
+function calcularVendasAnuais() {
+  let vendasMensais = [
+    1200, 1500, 800, 2100, 1900, 1300, 1400, 1750, 2000, 1850, 2200, 3000,
+  ];
+
+  let total = vendasMensais.reduce((acumulador, valorAtual) => {
+    return acumulador + valorAtual;
+  }, 0);
+
+  let media = total / vendasMensais.length;
+
+  setText(
+    "res34",
+    `O total foi de R$${total.toFixed(2)} e a média mensal foi de R$${media.toFixed(2)}`,
+  );
+}
+
+function gerarCarrinho() {}
+
+function addInput(contador) {
+  console.log("chegouInput")
+  const container = document.querySelector(".interacoes");
+  container.innerHTML = `
+        <div class="linha-input">
+            <input type="text" id="item${contador}txt" placeholder="Nome do item ${contador}" />
+            <input type="number" id="item${contador}num" placeholder="Valor do item ${contador}" />
+        </div>`;
+}
+
+function* addInputs() {
+  addInput(1);
+  yield 1;
+
+  addInput(2);
+  yield 2;
+
+  addInput(3);
+  yield 3;
 }
