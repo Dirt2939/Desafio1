@@ -33,11 +33,8 @@ const funcoes = {
   buscarNome,
   filtrarNotas,
   calcularVendasAnuais,
-  gerarCarrinho,
-  addInputs,
+  addInput,
 };
-
-const addInputsController = addInputs();
 
 document.addEventListener("click", (event) => {
   const elemento = event.target;
@@ -46,19 +43,6 @@ document.addEventListener("click", (event) => {
 
   if (btnToggle) {
     toggleVisibilidade(btnToggle);
-    return;
-  }
-
-  let contador = 0;
-  if (acao == "addInputs") { // CONSERTAR "ISSO"
-    console.log("aqui")
-    contador = addInputsController.next().value;
-    if (contador == 1) contador = addInputsController.next().value;
-    else if (contador == 2) contador = addInputsController.next().value;
-    else if (contador == 3) {
-      contador = 1;
-      gerarCarrinho();
-    }
     return;
   }
 
@@ -515,25 +499,55 @@ function calcularVendasAnuais() {
   );
 }
 
-function gerarCarrinho() {}
+function gerarCarrinho() {
+  const nomes = [];
+  const precos = [];
 
-function addInput(contador) {
-  console.log("chegouInput")
-  const container = document.querySelector(".interacoes");
-  container.innerHTML = `
-        <div class="linha-input">
-            <input type="text" id="item${contador}txt" placeholder="Nome do item ${contador}" />
-            <input type="number" id="item${contador}num" placeholder="Valor do item ${contador}" />
-        </div>`;
+  for (let i = 1; i <= 3; i++) {
+    const nome = document.getElementById(`item${i}txt`).value;
+    const preco = parseFloat(document.getElementById(`item${i}num`).value);
+
+    nomes.push(nome);
+    precos.push(preco);
+  }
+
+  let total = 0;
+  let resultado = "<h3>Nota Fiscal</h3>";
+
+  for (let i = 0; i < nomes.length; i++) {
+    resultado += `<p>${nomes[i]} - R$ ${precos[i].toFixed(2)}</p>`;
+    total += precos[i];
+  }
+
+  resultado += `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
+
+  document.getElementById("res35").innerHTML = resultado;
 }
 
-function* addInputs() {
-  addInput(1);
-  yield 1;
+let contador = 0;
 
-  addInput(2);
-  yield 2;
+function addInput() {
+  if (contador >= 3) return;
 
-  addInput(3);
-  yield 3;
+  contador++;
+
+  const container = document.getElementById("res35").parentElement;
+
+  const div = document.createElement("div");
+  div.classList.add("linha-input");
+
+  div.innerHTML = `
+    <input type="text" id="item${contador}txt" placeholder="Nome do item ${contador}" />
+    <input type="number" id="item${contador}num" placeholder="Valor do item ${contador}" />
+  `;
+
+  container.appendChild(div);
+
+  if (contador === 3) {
+    const btnFinalizar = document.createElement("button");
+    btnFinalizar.textContent = "Finalizar";
+    btnFinalizar.onclick = gerarCarrinho;
+
+    container.appendChild(btnFinalizar);
+  }
 }
